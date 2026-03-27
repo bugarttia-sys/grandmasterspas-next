@@ -101,3 +101,264 @@ h3 { font-size: var(--text-headline-md); }
   opacity: 1;
   transform: translateY(0);
 }
+
+/* =====================================================================
+   SPA COMPONENT STYLES (migrated from custom-premium.css)
+   ===================================================================== */
+
+/* Key Specs Grid */
+.spa-key-specs {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: auto auto auto;
+  column-gap: 0.5rem;
+  text-align: center;
+  padding: 1.5rem 0;
+  border-top: 1px solid var(--gms-border);
+  border-bottom: 1px solid var(--gms-border);
+}
+
+.spa-spec {
+  grid-row: span 3;
+  display: grid;
+  grid-template-rows: subgrid;
+  justify-items: center;
+}
+
+.spa-spec__value {
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  align-self: end;
+  padding-bottom: 0.15rem;
+}
+
+.spa-spec__label {
+  font-size: 0.6rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  opacity: var(--gms-text-muted);
+  align-self: center;
+}
+
+.spa-spec__sub {
+  font-size: 0.72rem;
+  opacity: 0.5;
+  margin-top: 0.15rem;
+  align-self: start;
+}
+
+/* Specs Table */
+.spa-specs-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.spa-specs-table tr {
+  border-bottom: 1px solid var(--gms-border);
+  transition: background-color var(--gms-transition);
+}
+
+.spa-specs-table tr:hover {
+  background-color: rgba(0, 0, 0, 0.015);
+}
+
+.spa-specs-table td {
+  padding: 0.65rem 0;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.spa-specs-table td:first-child {
+  font-weight: 500;
+  opacity: 0.65;
+  width: 42%;
+  padding-right: 1rem;
+}
+
+.spa-specs-table td:last-child {
+  text-align: right;
+  font-weight: 500;
+}
+
+/* Tier Badge */
+.spa-tier-badge {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 0.3em 1.1em;
+  border: 1px solid currentColor;
+  border-radius: 2px;
+  transition: var(--gms-transition);
+}
+
+.spa-tier--exclusive { color: var(--color-gms-gold); border-color: var(--color-gms-gold); }
+.spa-tier--signature { color: var(--color-gms-mid-grey); border-color: var(--color-gms-mid-grey); }
+.spa-tier--essential { color: #3B82F6; border-color: #3B82F6; }
+
+/* Therapy/Feature Pill Grid */
+.spa-therapy-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.5rem 0;
+}
+
+.spa-therapy-pill {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 0.5em 1.2em;
+  border: 1px solid var(--gms-border);
+  border-radius: 100px;
+  letter-spacing: 0.01em;
+  transition: var(--gms-transition);
+}
+
+.spa-therapy-pill:hover {
+  border-color: var(--color-gms-charcoal);
+}
+
+.spa-therapy-pill--gold {
+  border-color: var(--color-gms-gold);
+  color: var(--color-gms-gold);
+}
+
+.spa-therapy-pill--gold:hover {
+  background: var(--color-gms-gold);
+  color: #fff;
+}
+
+/* Highlights Grid */
+.spa-highlights-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  padding: 1rem 0;
+}
+
+.spa-highlight-card {
+  text-align: center;
+  padding: 1.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.spa-highlight-card__icon {
+  font-size: 2rem;
+  margin-bottom: 0.75rem;
+  opacity: 0.7;
+}
+
+.spa-highlight-card__title {
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.5rem;
+}
+
+.spa-highlight-card__body {
+  font-size: 0.85rem;
+  line-height: 1.65;
+  opacity: 0.7;
+  max-width: 36ch;
+  margin-inline: auto;
+}
+
+/* FAQ Accordion */
+.spa-faq-list {
+  max-width: 700px;
+  margin-inline: auto;
+}
+
+.spa-faq-item {
+  border-bottom: 1px solid var(--gms-border);
+}
+
+.spa-faq-question {
+  cursor: pointer;
+  padding: 1.15rem 2rem 1.15rem 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.4;
+  position: relative;
+  list-style: none;
+}
+
+.spa-faq-question::-webkit-details-marker {
+  display: none;
+}
+
+.spa-faq-question::after {
+  content: '+';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.25rem;
+  font-weight: 300;
+  color: var(--color-gms-mid-grey);
+  transition: transform var(--gms-transition);
+}
+
+.spa-faq-item[open] .spa-faq-question::after {
+  content: '\2212';
+}
+
+.spa-faq-answer {
+  padding: 0 0 1.25rem;
+}
+
+.spa-faq-answer p {
+  font-size: 0.875rem;
+  line-height: 1.7;
+  opacity: 0.75;
+  margin: 0;
+}
+
+/* Subtitle */
+.spa-subtitle {
+  font-size: 0.85rem;
+  opacity: 0.6;
+  letter-spacing: 0.015em;
+  font-style: italic;
+}
+
+/* Responsive — Mobile */
+@media (max-width: 699px) {
+  .spa-key-specs {
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 0.75rem;
+    padding: 1.25rem 0;
+  }
+
+  .spa-spec__value {
+    font-size: 1.4rem;
+  }
+
+  .spa-spec:nth-child(3) .spa-spec__value,
+  .spa-spec:nth-child(4) .spa-spec__value {
+    padding-top: 1.25rem;
+  }
+
+  .spa-highlights-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .spa-therapy-grid {
+    gap: 0.4rem;
+  }
+
+  .spa-therapy-pill {
+    font-size: 0.72rem;
+    padding: 0.4em 0.9em;
+  }
+}
