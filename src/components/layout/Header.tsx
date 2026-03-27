@@ -7,10 +7,10 @@ const navLinks = [
   { href: "/spas", label: "Spas" },
   { href: "/swim-spas", label: "Swim Spas" },
   { href: "/collections", label: "Collections" },
-  { href: "/quote", label: "Offers" },
-  { href: "/contact", label: "Showroom" },
-  { href: "/faq", label: "Service" },
-  { href: "/blog", label: "Knowledge" },
+  { href: "/offers", label: "Offers" },
+  { href: "/showroom", label: "Showroom" },
+  { href: "/about", label: "About" },
+  { href: "/knowledge", label: "Knowledge" },
 ];
 
 export default function Header() {
