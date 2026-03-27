@@ -1,7 +1,7 @@
 export default function HomePage() {
   return (
-    <main>
-      {/* Hero */}
+    <>
+      {/* Hero — full-bleed, header overlaps */}
       <section className="relative min-h-dvh flex items-end bg-gms-charcoal text-white">
         <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/20 to-transparent z-10" />
         <div className="relative z-20 max-w-screen-xl mx-auto w-full px-6 pb-[clamp(2.5rem,6vw,5rem)]">
@@ -23,7 +23,7 @@ export default function HomePage() {
               Explore Collection
             </a>
             <a
-              href="/contact"
+              href="/quote"
               className="inline-block border border-white/30 text-white px-8 py-3 text-sm font-medium tracking-wide rounded-sm transition-all hover:bg-white/10"
             >
               Request a Quote
@@ -32,7 +32,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Collections placeholder — Fase 3 */}
+      {/* Collections — Fase 3: Shopify data */}
       <section className="py-[var(--spacing-section)] bg-surface">
         <div className="max-w-screen-xl mx-auto px-6 text-center">
           <p className="text-[0.65rem] font-sans font-semibold uppercase tracking-[0.18em] text-gms-gold mb-4">
@@ -40,12 +40,12 @@ export default function HomePage() {
           </p>
           <h2 className="font-serif mb-6">Our Spa Collections</h2>
           <p className="text-tertiary max-w-prose mx-auto">
-            Collections grid wordt hier geladen via Shopify Storefront API.
+            Collections grid wordt hier geladen via Shopify Admin API.
           </p>
         </div>
       </section>
 
-      {/* USP placeholder — Fase 3 */}
+      {/* USP — Fase 3 */}
       <section className="py-[var(--spacing-section)] bg-surface-elevated">
         <div className="max-w-screen-xl mx-auto px-6 text-center">
           <p className="text-[0.65rem] font-sans font-semibold uppercase tracking-[0.18em] text-gms-gold mb-4">
@@ -57,6 +57,6 @@ export default function HomePage() {
           </p>
         </div>
       </section>
-    </main>
+    </>
   );
 }
