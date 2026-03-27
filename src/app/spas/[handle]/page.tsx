@@ -50,10 +50,10 @@ export default async function SpaProductPage({ params }: Props) {
       {/* === FULL-WIDTH HERO (Ecstatic only) === */}
       {isEcstatic && heroImage && (
         <section className="relative min-h-[55vh] md:min-h-[60vh] overflow-hidden border-b border-border">
-          {/* Use last image (lifestyle) if available, otherwise first */}
+          {/* Lifestyle hero image — static for Ecstatic, Shopify for others */}
           <Image
-            src={images.length > 2 ? images[images.length - 1].url : heroImage.url}
-            alt={heroImage.altText || product.title}
+            src={isEcstatic ? "/hero-ecstatic-lifestyle.jpg" : (heroImage?.url || "")}
+            alt={heroImage?.altText || product.title}
             fill
             className="object-cover"
             priority

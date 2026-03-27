@@ -12,15 +12,13 @@ export default async function HomePage() {
     <>
       {/* ═══ HERO ═══ */}
       <section className="relative min-h-screen flex items-end bg-charcoal text-white">
-        {products[0]?.images?.edges?.[0]?.node && (
-          <Image
-            src={products[0].images.edges[0].node.url}
-            alt="Grand Master Spas Showroom"
-            fill
-            className="object-cover"
-            priority
-          />
-        )}
+        <Image
+          src="/hero-ecstatic.jpg"
+          alt="Grand Master Spas Showroom"
+          fill
+          className="object-cover"
+          priority
+        />
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/15 to-transparent z-10" />
         <div className="relative z-20 max-w-[1280px] mx-auto w-full px-4 md:px-6 pb-16 md:pb-24">
           <p className="text-xs uppercase tracking-widest opacity-70 mb-3 animate-fade-in">
@@ -158,7 +156,7 @@ export default async function HomePage() {
             {/* Hot Tub Card */}
             <div className="card-premium">
               <div className="aspect-[16/9] relative overflow-hidden bg-charcoal">
-                <div className="absolute inset-0 flex items-center justify-center text-white/30 text-xl">Hot Tub Spas</div>
+                <Image src="/collection-premium.jpg" alt="Hot Tub Spas" fill className="object-cover" />
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-medium mb-2">Hot Tub Spas</h3>
@@ -182,7 +180,7 @@ export default async function HomePage() {
             {/* Swim Spa Card */}
             <div className="card-premium">
               <div className="aspect-[16/9] relative overflow-hidden bg-charcoal">
-                <div className="absolute inset-0 flex items-center justify-center text-white/30 text-xl">Swim Spas</div>
+                <Image src="/collection-fitness.jpg" alt="Swim Spas" fill className="object-cover" />
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-medium mb-2">Swim Spas</h3>
