@@ -1,26 +1,103 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* =====================================================================
+   GRAND MASTER SPAS — Design Tokens (Tailwind v4)
+   Source: DESIGN.md (Atelier Visionary) + custom-premium.css
+   ===================================================================== */
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* — Brand Colors — */
+  --color-gms-gold: #C9A96E;
+  --color-gms-gold-light: #E4D5B7;
+  --color-gms-charcoal: #1A1A1A;
+  --color-gms-slate: #2C2C2C;
+  --color-gms-mid-grey: #6B7280;
+  --color-gms-light-grey: #F5F5F5;
+  --color-gms-white: #FFFFFF;
+
+  /* — Stitch Token Palette — */
+  --color-primary: #333333;
+  --color-secondary: #DEA04A;
+  --color-tertiary: #6E6D69;
+  --color-neutral: #F5F5F5;
+
+  /* — Surface Hierarchy — */
+  --color-surface: #F5F5F5;
+  --color-surface-elevated: #FFFFFF;
+
+  /* — Fonts — */
+  --font-serif: "Noto Serif", Georgia, serif;
+  --font-sans: "Manrope", system-ui, sans-serif;
+
+  /* — Typography Scale — */
+  --text-display-lg: 3.5rem;
+  --text-headline-md: 1.75rem;
+  --text-body-md: 0.875rem;
+  --text-label-sm: 0.75rem;
+
+  /* — Spacing — */
+  --spacing-section: clamp(4rem, 8vw, 8rem);
+
+  /* — Border Radius — */
+  --radius-sm: 2px;
+  --radius-md: 0.25rem;
+  --radius-full: 100px;
+
+  /* — Transitions — */
+  --transition-gms: 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+  /* — Breakpoints — */
+  --breakpoint-tablet: 700px;
+  --breakpoint-desktop: 1000px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* — CSS Custom Properties (non-Tailwind) — */
+:root {
+  --gms-border: rgba(0, 0, 0, 0.06);
+  --gms-border-dark: rgba(255, 255, 255, 0.10);
+  --gms-text-muted: 0.55;
+  --gms-transition: 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
+/* — Base Styles — */
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-surface);
+  color: var(--color-gms-charcoal);
+  font-family: var(--font-sans);
+  font-size: var(--text-body-md);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* — Typography Defaults — */
+h1, h2, h3, h4 {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+h1 { font-size: clamp(2.8rem, 6vw, 5.5rem); }
+h2 { font-size: clamp(2rem, 4vw, 3.25rem); }
+h3 { font-size: var(--text-headline-md); }
+
+/* — Selection — */
+::selection {
+  background: var(--color-gms-gold-light);
+  color: var(--color-gms-charcoal);
+}
+
+/* — Scroll Animations — */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(1.5rem);
+  transition:
+    opacity 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+[data-reveal].revealed {
+  opacity: 1;
+  transform: translateY(0);
 }
