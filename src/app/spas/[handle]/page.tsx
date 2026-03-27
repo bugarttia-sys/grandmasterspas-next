@@ -109,18 +109,18 @@ export default async function SpaProductPage({ params }: Props) {
       {/* === PRODUCT HERO (Gallery + Info) === */}
       <section className={`section-padding ${isEcstatic ? "!pt-8 md:!pt-12" : ""}`}>
         <div className="max-w-[1280px] mx-auto px-4 md:px-6">
-          <div className="grid lg:grid-cols-[1fr,1fr] gap-8 lg:gap-12">
+          <div className="grid lg:grid-cols-[1fr,1.2fr] gap-8 lg:gap-12 items-start">
             {/* LEFT: Gallery */}
             <div>
-              <div className={`aspect-[4/3] relative overflow-hidden bg-muted shadow-lg mb-3 sm:mb-4 ${isEcstatic ? "rounded-md border border-border/80 shadow-2xl" : "rounded-sm"}`}>
+              <div className={`aspect-[4/3] relative overflow-hidden bg-muted shadow-lg mb-4 sm:mb-5 ${isEcstatic ? "rounded-lg border border-border/80 shadow-xl" : "rounded-sm"}`}>
                 {heroImage && (
                   <Image src={heroImage.url} alt={heroImage.altText || product.title} fill className="object-cover" priority />
                 )}
               </div>
               {images.length > 1 && (
-                <div className="grid grid-cols-4 gap-1.5 sm:gap-2">
+                <div className="grid grid-cols-4 gap-2">
                   {images.slice(0, 4).map((img, i) => (
-                    <div key={i} className={`aspect-square relative overflow-hidden bg-muted ${i === 0 ? "ring-2 ring-bronze" : "opacity-60 hover:opacity-100"} ${isEcstatic ? "border border-border/70 rounded-md" : "rounded-sm"} transition-all`}>
+                    <div key={i} className={`aspect-square relative overflow-hidden bg-muted cursor-pointer ${i === 0 ? "ring-2 ring-bronze" : "opacity-70 hover:opacity-100"} ${isEcstatic ? "border border-border/70 rounded-lg" : "rounded-sm"} transition-all`}>
                       <Image src={img.url} alt={img.altText || `${product.title} ${i + 1}`} fill className="object-cover" />
                     </div>
                   ))}
@@ -129,55 +129,52 @@ export default async function SpaProductPage({ params }: Props) {
             </div>
 
             {/* RIGHT: Product Info */}
-            <div className={isEcstatic ? "bg-background border border-border rounded-md p-5 sm:p-7 shadow-sm" : ""}>
-              <span className="inline-block text-xs uppercase tracking-widest text-bronze mb-2 sm:mb-3">
-                {tier || product.productType} Collection
-              </span>
-              <h1 className="text-2xl sm:text-3xl lg:text-4xl mb-2 font-light">{product.title}</h1>
-              <p className="text-sm sm:text-base text-muted-fg mb-5 sm:mb-6">
-                {subtitle || `${seats}-Person Outdoor Spa | ${jets} Jets | Levitation Bed`}
-              </p>
+            <div className={isEcstatic ? "bg-background border border-border/60 rounded-lg p-6 sm:p-8 shadow-sm space-y-6" : ""}>
+              <div>
+                <span className="inline-block text-xs uppercase tracking-widest text-bronze mb-3">
+                  {tier || product.productType} Collection
+                </span>
+                <h1 className="text-3xl sm:text-4xl lg:text-5xl mb-3 font-light leading-tight">{product.title}</h1>
+                <p className="text-base sm:text-lg text-muted-fg">
+                  {subtitle || `${seats}-Person Outdoor Spa | ${jets} Jets | Levitation Bed`}
+                </p>
+              </div>
 
               {/* Quick Specs Grid */}
-              <div className="grid grid-cols-2 gap-3 sm:gap-4 mb-6 sm:mb-8 pb-6 sm:pb-8 border-b border-border">
-                {[
-                  { icon: "👥", label: "Seats", value: seats ? `${seats} persons` : null },
-                  { icon: "💨", label: "Jets", value: jets },
-                  { icon: "📐", label: "Dimensions", value: lengthCm && widthCm ? `${lengthCm}×${widthCm}×${heightCm} cm` : null },
-                  { icon: "💧", label: "Water Capacity", value: waterCapacity ? `${waterCapacity} liters` : null },
-                ].filter(s => s.value).map((s) => (
-                  <div key={s.label} className="flex items-center gap-2.5 sm:gap-3">
-                    <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-sm bg-muted flex items-center justify-center flex-shrink-0">
-                      <span className="text-sm">{s.icon}</span>
+              <div className="space-y-3">
+                <h3 className="text-xs uppercase tracking-widest text-muted-fg font-medium">Specifications</h3>
+                <div className="grid grid-cols-2 gap-3">
+                  {[
+                    { label: "Capacity", value: seats ? `${seats} persons` : null },
+                    { label: "Jets", value: jets },
+                    { label: "Dimensions", value: lengthCm && widthCm ? `${lengthCm}×${widthCm}×${heightCm} cm` : null },
+                    { label: "Water Volume", value: waterCapacity ? `${waterCapacity}L` : null },
+                  ].filter(s => s.value).map((s) => (
+                    <div key={s.label} className="p-3 border border-border/50 rounded-md bg-muted/30">
+                      <div className="text-xs uppercase tracking-widest text-muted-fg mb-1">{s.label}</div>
+                      <div className="font-medium text-sm">{s.value}</div>
                     </div>
-                    <div className="min-w-0">
-                      <div className="text-xs sm:text-sm text-muted-fg">{s.label}</div>
-                      <div className="font-medium text-sm sm:text-base truncate">{s.value}</div>
-                    </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
 
               {/* Price */}
-              <div className="mb-6">
-                <p className="text-2xl font-light mb-1">
+              <div className="border-t border-border/50 pt-6">
+                <p className="text-xs uppercase tracking-widest text-muted-fg mb-2">Starting Price</p>
+                <p className="text-3xl font-light mb-1">
                   {formatPrice(product.priceRangeV2.minVariantPrice)}
                 </p>
-                <p className="text-xs text-muted-fg">Starting price incl. VAT</p>
+                <p className="text-xs text-muted-fg">Incl. VAT</p>
               </div>
 
               {/* CTAs */}
-              <div className="space-y-3">
-                <Link href="/quote" className="btn-premium w-full !text-center !py-3">
+              <div className="space-y-3 pt-2">
+                <Link href="/quote" className="btn-premium w-full !text-center !py-4 !text-base">
                   Request a Quote
                 </Link>
-                <div className="rounded-sm border border-bronze/20 bg-bronze/[0.06] px-3 py-2.5 text-xs text-muted-fg">
-                  Includes free site-check advice, transparent lead times, and tailored installation recommendations.
-                </div>
-                <div className="grid grid-cols-2 gap-3">
-                  <Link href="/contact" className="btn-premium-outline !text-center !py-2.5 !text-sm">Book Visit</Link>
-                  <a href="https://wa.me/491732063792" className="btn-premium-outline !text-center !py-2.5 !text-sm">WhatsApp</a>
-                </div>
+                <Link href="/contact" className="btn-premium-outline w-full !text-center !py-3 !text-sm">
+                  Book Showroom Visit
+                </Link>
               </div>
             </div>
           </div>
@@ -187,18 +184,18 @@ export default async function SpaProductPage({ params }: Props) {
       {/* === SERVICE PILLARS === */}
       <section className="!pt-0 md:!pt-0 pb-8">
         <div className="max-w-[1280px] mx-auto px-4 md:px-6">
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {[
               { icon: "🛡️", title: "Certified Warranty Support", body: "Up to 10 years structure, 5 years surface, 2 years equipment." },
               { icon: "🚚", title: "White-Glove Delivery", body: "Professional delivery and placement included." },
               { icon: "⏱️", title: "Fast Expert Response", body: "Our team responds within 24 hours to all inquiries." },
             ].map((p) => (
-              <div key={p.title} className="rounded-sm border border-border bg-background px-4 py-4 shadow-sm">
-                <div className="mb-2 flex h-9 w-9 items-center justify-center rounded-sm bg-bronze/10 text-lg">
+              <div key={p.title} className="rounded-lg border border-border/60 bg-background px-6 py-6 shadow-sm hover:shadow-md transition-shadow">
+                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-bronze/10 text-2xl">
                   {p.icon}
                 </div>
-                <h3 className="mb-1 text-base font-medium">{p.title}</h3>
-                <p className="text-sm text-muted-fg">{p.body}</p>
+                <h3 className="mb-2 text-lg font-medium">{p.title}</h3>
+                <p className="text-sm text-muted-fg leading-relaxed">{p.body}</p>
               </div>
             ))}
           </div>
@@ -214,51 +211,52 @@ export default async function SpaProductPage({ params }: Props) {
 
       {/* === DESIGN STORY BANNER === */}
       {designStory && images[1] && (
-        <section className="relative min-h-[70vh] flex items-center">
+        <section className="relative min-h-[65vh] flex items-center overflow-hidden">
           <Image src={images[1].url} alt="Design" fill className="object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/30 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />
           <div className="relative max-w-[1280px] mx-auto w-full px-4 md:px-6">
-            <div className="max-w-lg text-white">
-              <p className="text-xs uppercase tracking-widest text-bronze-light mb-3">Design</p>
-              <h2 className="font-light text-white mb-4">Crafted for Comfort</h2>
-              <p className="text-base leading-relaxed text-white/80">{designStory}</p>
+            <div className="max-w-2xl text-white py-12">
+              <p className="text-xs uppercase tracking-[0.2em] text-bronze mb-4 font-medium">Design</p>
+              <h2 className="text-4xl md:text-5xl font-light mb-6 leading-tight">Crafted for Comfort</h2>
+              <p className="text-lg leading-relaxed text-white/85 max-w-xl">{designStory}</p>
             </div>
           </div>
         </section>
       )}
 
       {/* === LEAD FORM CTA === */}
-      <section className="section-padding">
+      <section className="section-padding bg-muted/40">
         <div className="max-w-[1280px] mx-auto px-4 md:px-6">
           <div id="quote-form" className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start scroll-mt-24">
             <div>
-              <span className="inline-block text-xs uppercase tracking-widest text-bronze mb-2 sm:mb-3">
+              <span className="inline-block text-xs uppercase tracking-widest text-bronze mb-3 font-medium">
                 Get Started
               </span>
-              <h2 className="text-2xl sm:text-3xl font-light mb-3 sm:mb-4">
+              <h2 className="text-3xl sm:text-4xl font-light mb-4">
                 Interested in the {product.title}?
               </h2>
-              <p className="text-muted-fg mb-6 text-sm sm:text-base">
+              <p className="text-muted-fg mb-8 text-base leading-relaxed">
                 Request a personalized quote and our spa specialists will contact you within 24 hours with pricing, delivery options, and installation details.
               </p>
-              <div className="space-y-3">
+              <div className="space-y-4">
                 {["Free site-check advice included", "Transparent pricing with no hidden costs", "Tailored installation recommendations"].map((b) => (
-                  <div key={b} className="flex items-center gap-2 text-sm">
-                    <span className="text-bronze">✓</span>
-                    <span>{b}</span>
+                  <div key={b} className="flex items-center gap-3 text-sm">
+                    <span className="text-bronze text-lg">✓</span>
+                    <span className="text-foreground">{b}</span>
                   </div>
                 ))}
               </div>
             </div>
-            <div className="bg-background border border-border rounded-sm p-6 shadow-sm">
-              <form className="space-y-4">
+            <div className="bg-background border border-border rounded-lg p-7 sm:p-8 shadow-sm">
+              <form className="space-y-5">
                 <div className="grid grid-cols-2 gap-4">
                   <input type="text" placeholder="First name" className="form-input" />
-                  <input type="email" placeholder="Email address" className="form-input" />
+                  <input type="text" placeholder="Last name" className="form-input" />
                 </div>
-                <input type="tel" placeholder="Phone number (optional)" className="form-input" />
-                <textarea placeholder="Any questions or requirements?" rows={3} className="form-input resize-none" />
-                <button type="submit" className="btn-premium w-full !py-3">
+                <input type="email" placeholder="Email address" className="form-input" />
+                <input type="tel" placeholder="Phone number" className="form-input" />
+                <textarea placeholder="Any questions or requirements?" rows={4} className="form-input resize-none" />
+                <button type="submit" className="btn-premium w-full !py-4 !text-base">
                   Request a Quote
                 </button>
                 <p className="text-xs text-muted-fg text-center">
