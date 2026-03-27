@@ -49,18 +49,25 @@ export default async function SpaProductPage({ params }: Props) {
 
       {/* === FULL-WIDTH HERO (Ecstatic only) === */}
       {isEcstatic && heroImage && (
-        <section className="relative overflow-hidden border-b border-border">
-          <Image src={heroImage.url} alt={heroImage.altText || product.title} fill className="object-cover" priority />
+        <section className="relative min-h-[55vh] md:min-h-[60vh] overflow-hidden border-b border-border">
+          {/* Use last image (lifestyle) if available, otherwise first */}
+          <Image
+            src={images.length > 2 ? images[images.length - 1].url : heroImage.url}
+            alt={heroImage.altText || product.title}
+            fill
+            className="object-cover"
+            priority
+          />
           <div className="absolute inset-0 bg-[linear-gradient(105deg,rgba(8,12,16,0.82)_8%,rgba(8,12,16,0.58)_42%,rgba(8,12,16,0.25)_75%,rgba(8,12,16,0.4)_100%)]" />
-          <div className="relative max-w-[1280px] mx-auto px-4 md:px-6 py-14 md:py-20 lg:py-24">
+          <div className="relative max-w-[1280px] mx-auto px-4 md:px-6 py-14 md:py-20 lg:py-28">
             <span className="inline-flex items-center rounded-full border border-white/35 bg-white/10 px-4 py-1 text-[11px] tracking-[0.24em] uppercase text-white mb-5">
-              {tier || "Signature"} Flagship
+              {tier || "Exclusive"} Flagship
             </span>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-light tracking-wide uppercase text-white mb-3">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-light tracking-wide uppercase text-white mb-3">
               {product.title}
             </h1>
-            <p className="text-base md:text-lg text-white/85 mb-7 max-w-xl">
-              {heroTagline || subtitle || product.description?.slice(0, 120)}
+            <p className="text-sm md:text-base text-white/70 mb-7 max-w-xl">
+              {subtitle || `${seats}-Person Outdoor Spa · ${jets} Jets · Levitation Bed`}
             </p>
             {/* Key Specs */}
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 mb-7 max-w-lg">
@@ -100,9 +107,9 @@ export default async function SpaProductPage({ params }: Props) {
       </div>
 
       {/* === PRODUCT HERO (Gallery + Info) === */}
-      <section className={`section-padding ${isEcstatic ? "!pt-10 md:!pt-14" : ""}`}>
+      <section className={`section-padding ${isEcstatic ? "!pt-8 md:!pt-12" : ""}`}>
         <div className="max-w-[1280px] mx-auto px-4 md:px-6">
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
+          <div className="grid lg:grid-cols-[1fr,1fr] gap-8 lg:gap-12">
             {/* LEFT: Gallery */}
             <div>
               <div className={`aspect-[4/3] relative overflow-hidden bg-muted shadow-lg mb-3 sm:mb-4 ${isEcstatic ? "rounded-md border border-border/80 shadow-2xl" : "rounded-sm"}`}>
@@ -127,8 +134,8 @@ export default async function SpaProductPage({ params }: Props) {
                 {tier || product.productType} Collection
               </span>
               <h1 className="text-2xl sm:text-3xl lg:text-4xl mb-2 font-light">{product.title}</h1>
-              <p className="text-base sm:text-lg text-muted-fg mb-5 sm:mb-6">
-                {subtitle || heroTagline}
+              <p className="text-sm sm:text-base text-muted-fg mb-5 sm:mb-6">
+                {subtitle || `${seats}-Person Outdoor Spa | ${jets} Jets | Levitation Bed`}
               </p>
 
               {/* Quick Specs Grid */}
