@@ -1,15 +1,12 @@
 import type { Metadata } from "next";
-import { Inter, Noto_Serif_Display } from "next/font/google";
+import { Inter, Noto_Serif_Display, Geist } from "next/font/google";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import ChatWidget from "@/components/chat/ChatWidget";
 import "./globals.css";
+import { cn } from "@/lib/utils";
 
-const inter = Inter({
-  variable: "--font-sans",
-  subsets: ["latin"],
-  display: "swap",
-});
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 const notoSerifDisplay = Noto_Serif_Display({
   variable: "--font-serif",
@@ -36,7 +33,7 @@ export default function RootLayout({
   return (
     <html
       lang="nl"
-      className={`${inter.variable} ${notoSerifDisplay.variable} h-full`}
+      className={cn("h-full", notoSerifDisplay.variable, "font-sans", geist.variable)}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground">
         <Header />
